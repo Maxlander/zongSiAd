@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/admin/doLogin.php" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/admin/images/attach.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/images/delete.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/images/icon" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/images/logo.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/images/logo_index.png" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/images/webLogo.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/styles/backstage.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/styles/global.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/styles/main.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/styles/reset.css" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/confings/configs.php" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/core" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/login.php" charset="UTF-8" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>
