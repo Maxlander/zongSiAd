@@ -12,7 +12,7 @@
 <div class="container-fluid" id="XS">
     <div class="row-fluid">
         <div class="span12">
-            <img alt="140x140" src="public/image/images.png" />
+            <img alt="140x140" src="images/logo1.png" />
         </div>
     </div>
     <div class="row-fluid">
@@ -20,18 +20,18 @@
 ID:<p>54455</p>
         </div>
         <div class="span4">
-½ñÈÕÊÕÈë£º<p>5Ôª</p>
+ä»Šæ—¥æ”¶å…¥ï¼š<p>5å…ƒ</p>
         </div>
         <div class="span4">
-½ñÈÕÊÕÍ½£º<p>1ÈË</p>
+ä»Šæ—¥æ”¶å¾’ï¼š<p>1äºº</p>
         </div>
     </div>
     <div class="row-fluid">
         <div class="span12">
-            <button class="btn btn-primary btn-block" type="button" onclick="location.href='task'">×¬Ç®</button>
-            <button class="btn btn-primary btn-block" type="button" onclick="location.href='share'">·ÖÏí</button>
-            <button class="btn btn-primary btn-block" type="button" onclick="location.href='withDraw'">ÌáÏÖ</button>
-            <button class="btn btn-primary btn-block" type="button" onclick="location.href='singUp'">¸öÈË</button>
+            <button class="btn btn-primary btn-block" type="button" onclick="location.href='task.php'">èµšé’±</button>
+            <button class="btn btn-primary btn-block" type="button" onclick="location.href='share.php'">åˆ†äº«</button>
+            <button class="btn btn-primary btn-block" type="button" onclick="location.href='withDraw.php'">æçŽ°</button>
+            <button class="btn btn-primary btn-block" type="button" onclick="location.href='singUp.php'">ä¸ªäºº</button>
         </div>
     </div>
 </div>

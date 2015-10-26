@@ -5,6 +5,8 @@
  */
 function addPro(){
 	$arr=$_POST;
+	$arr['pNAme']=$_POST['pName'];
+	$arr=$_POST;
 	$arr['pubTime']=time();
 	$path="./uploads";
 	$uploadFiles=uploadFile($path);
@@ -16,7 +18,7 @@ function addPro(){
 			thumb($path."/".$uploadFile['name'],"../image_800/".$uploadFile['name'],800,800);
 		}
 	}
-	$res=insert("imooc_pro",$arr);
+	$res=insert("ad_pro",$arr);
 	$pid=getInsertId();
 	if($res&&$pid){
 		foreach($uploadFiles as $uploadFile){
@@ -24,7 +26,7 @@ function addPro(){
 			$arr1['albumPath']=$uploadFile['name'];
 			addAlbum($arr1);
 		}
-		$mes="<p>添加成功!</p><a href='addPro.php' target='mainFrame'>继续添加</a>|<a href='listPro.php' target='mainFrame'>查看商品列表</a>";
+		$mes="<p>添加成功!</p><a href='/admin/addPro.php' target='mainFrame'>继续添加</a>|<a href='/admin/listPro.php' target='mainFrame'>查看商品列表</a>";
 	}else{
 		foreach($uploadFiles as $uploadFile){
 			if(file_exists("../image_800/".$uploadFile['name'])){
@@ -41,7 +43,7 @@ function addPro(){
 			}
 		}
 		$mes="<p>添加失败!</p><a href='addPro.php' target='mainFrame'>重新添加</a>";
-		
+
 	}
 	return $mes;
 }
@@ -63,7 +65,7 @@ function editPro($id){
 		}
 	}
 	$where="id={$id}";
-	$res=update("imooc_pro",$arr,$where);
+	$res=update("ad_pro",$arr,$where);
 	$pid=$id;
 	if($res&&$pid){
 		if($uploadFiles &&is_array($uploadFiles)){
@@ -73,7 +75,7 @@ function editPro($id){
 				addAlbum($arr1);
 			}
 		}
-		$mes="<p>编辑成功!</p><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
+		$mes="<p>编辑成功!</p><a href='/admin/listPro.php' target='mainFrame'>查看商品列表</a>";
 	}else{
 	if(is_array($uploadFiles)&&$uploadFiles){
 		foreach($uploadFiles as $uploadFile){
@@ -91,7 +93,7 @@ function editPro($id){
 			}
 		}
 	}
-		$mes="<p>编辑失败!</p><a href='listPro.php' target='mainFrame'>重新编辑</a>";
+		$mes="<p>编辑失败!</p><a href='/admin/listPro.php' target='mainFrame'>重新编辑</a>";
 		
 	}
 	return $mes;
@@ -99,7 +101,7 @@ function editPro($id){
 
 function delPro($id){
 	$where="id=$id";
-	$res=delete("imooc_pro",$where);
+	$res=delete("ad_pro",$where);
 	$proImgs=getAllImgByProId($id);
 	if($proImgs&&is_array($proImgs)){
 		foreach($proImgs as $proImg){
@@ -118,15 +120,14 @@ function delPro($id){
 			if(file_exists("../image_800/".$proImg['albumPath'])){
 				unlink("../image_800/".$proImg['albumPath']);
 			}
-			
 		}
 	}
 	$where1="pid={$id}";
-	$res1=delete("imooc_album",$where1);
+	$res1=delete("ad_album",$where1);
 	if($res&&$res1){
-		$mes="删除成功!<br/><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
+		$mes="删除成功!<br/><a href='/admin/listPro.php' target='mainFrame'>查看商品列表</a>";
 	}else{
-		$mes="删除失败!<br/><a href='listPro.php' target='mainFrame'>重新删除</a>";
+		$mes="删除失败!<br/><a href='/admin/listPro.php' target='mainFrame'>重新删除</a>";
 	}
 	return $mes;
 }
@@ -137,7 +138,7 @@ function delPro($id){
  * @return array
  */
 function getAllProByAdmin(){
-	$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName from imooc_pro as p join imooc_cate c on p.cId=c.id";
+	$sql="select pName,pSn,pNum,mPrice,pDesc from ad_pro";
 	$rows=fetchAll($sql);
 	return $rows;
 }
@@ -148,7 +149,7 @@ function getAllProByAdmin(){
  * @return array
  */
 function getAllImgByProId($id){
-	$sql="select a.albumPath from imooc_album a where pid={$id}";
+	$sql="select a.albumPath from ad_album a where pid={$id}";
 	$rows=fetchAll($sql);
 	return $rows;
 }
@@ -159,7 +160,7 @@ function getAllImgByProId($id){
  * @return array
  */
 function getProById($id){
-		$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from imooc_pro as p join imooc_cate c on p.cId=c.id where p.id={$id}";
+		$sql="select pName,pSn,pNum,mPrice,pDesc from ad_pro";
 		$row=fetchOne($sql);
 		return $row;
 }
@@ -169,7 +170,7 @@ function getProById($id){
  * @return array
  */
 function checkProExist($cid){
-	$sql="select * from imooc_pro where cId={$cid}";
+	$sql="select pName,pSn,pNum,mPrice,pDesc from ad_pro";
 	$rows=fetchAll($sql);
 	return $rows;
 }
@@ -179,9 +180,16 @@ function checkProExist($cid){
  * @return array
  */
 function getAllPros(){
-	$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from imooc_pro as p join imooc_cate c on p.cId=c.id ";
-	$rows=fetchAll($sql);
-	return $rows;
+	$servername = "localhost";
+	$username = "root";
+	$password = "chenyong";
+	$dbname = "zongsi";
+// 创建连接
+	$conn = new mysqli($servername, $username, $password, $dbname);
+	$sql=mysqli_query($conn,"select pName,pSn,pNum,mPrice,pDesc from ad_pro ");
+//	$rows=fetchAll($sql);
+	$row=mysqli_fetch_array($sql);
+	return $row;
 }
 
 /**
@@ -190,7 +198,7 @@ function getAllPros(){
  * @return Array
  */
 function getProsByCid($cid){
-	$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from imooc_pro as p join imooc_cate c on p.cId=c.id where p.cId={$cid} limit 4";
+	$sql="select pName,pSn,pNum,mPrice,pDesc from ad_pro";
 	$rows=fetchAll($sql);
 	return $rows;
 }
@@ -201,7 +209,7 @@ function getProsByCid($cid){
  * @return array
  */
 function getSmallProsByCid($cid){
-	$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from imooc_pro as p join imooc_cate c on p.cId=c.id where p.cId={$cid} limit 4,4";
+	$sql="select pName,pSn,pNum,mPrice,pDesc from ad_pro";
 	$rows=fetchAll($sql);
 	return $rows;
 }
@@ -211,7 +219,7 @@ function getSmallProsByCid($cid){
  * @return array
  */
 function getProInfo(){
-	$sql="select id,pName from imooc_pro order by id asc";
+	$sql="select pName,pSn,pNum,mPrice,pDesc from ad_pro";
 	$rows=fetchAll($sql);
 	return $rows;
 }

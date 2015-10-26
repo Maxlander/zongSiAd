@@ -29,7 +29,7 @@ function login(){
 	$username=$_POST['username'];
 	//addslashes():使用反斜线引用特殊字符
 	//$username=addslashes($username);
-	$username=mysql_escape_string($username);
+	$username=mysqli_escape_string($username);
 	$password=md5($_POST['password']);
 	$sql="select * from ad_user where username='{$username}' and password='{$password}'";
 	//$resNum=getResultNum($sql);

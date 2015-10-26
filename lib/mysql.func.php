@@ -17,10 +17,11 @@ function connect(){
  * @return number
  */
 function insert($table,$array){
+	$link=mysqli_connect(DB_HOST,DB_USER,DB_PWD) or die("数据库连接失败Error:".mysql_errno().":".mysql_error());
 	$keys=join(",",array_keys($array));
 	$vals="'".join("','",array_values($array))."'";
 	$sql="insert {$table}($keys) values({$vals})";
-	mysql_query($sql);
+	mysqli_query($link,$sql);
 	return mysql_insert_id();
 }
 /**
@@ -57,9 +58,10 @@ function insert($table,$array){
  * @return number
  */
 function delete($table,$where=null){
+	$link=mysqli_connect(DB_HOST,DB_USER,DB_PWD) or die("数据库连接失败Error:".mysql_errno().":".mysql_error());
 	$where=$where==null?null:" where ".$where;
 	$sql="delete from {$table} {$where}";
-	mysql_query($sql);
+	mysqli_query($link,$sql);
 	return mysql_affected_rows();
 }
 
@@ -83,11 +85,12 @@ function fetchOne($sql,$result_type=MYSQL_ASSOC){
  * @return multitype:
  */
 function fetchAll($sql,$result_type=MYSQL_ASSOC){
-	$result=mysql_query($sql);
-	while(@$row=mysql_fetch_array($result,$result_type)){
+	$link=mysqli_connect(DB_HOST,DB_USER,DB_PWD) or die("数据库连接失败Error:".mysql_errno().":".mysql_error());
+	$result=mysqli_query($link,$sql);
+	while(@$row=mysqli_fetch_array($result,$result_type)){
 		$rows[]=$row;
+		return $rows;
 	}
-	return $rows;
 }
 
 /**

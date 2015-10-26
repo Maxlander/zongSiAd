@@ -16,7 +16,7 @@ function addPro(){
 			thumb($path."/".$uploadFile['name'],"../image_800/".$uploadFile['name'],800,800);
 		}
 	}
-	$res=insert("imooc_pro",$arr);
+	$res=insert("ad_pro",$arr);
 	$pid=getInsertId();
 	if($res&&$pid){
 		foreach($uploadFiles as $uploadFile){
@@ -63,7 +63,7 @@ function editPro($id){
 		}
 	}
 	$where="id={$id}";
-	$res=update("imooc_pro",$arr,$where);
+	$res=update("ad_pro",$arr,$where);
 	$pid=$id;
 	if($res&&$pid){
 		if($uploadFiles &&is_array($uploadFiles)){
@@ -99,7 +99,7 @@ function editPro($id){
 
 function delPro($id){
 	$where="id=$id";
-	$res=delete("imooc_pro",$where);
+	$res=delete("ad_pro",$where);
 	$proImgs=getAllImgByProId($id);
 	if($proImgs&&is_array($proImgs)){
 		foreach($proImgs as $proImg){
@@ -122,7 +122,7 @@ function delPro($id){
 		}
 	}
 	$where1="pid={$id}";
-	$res1=delete("imooc_album",$where1);
+	$res1=delete("ad_album",$where1);
 	if($res&&$res1){
 		$mes="删除成功!<br/><a href='listPro.php' target='mainFrame'>查看商品列表</a>";
 	}else{
@@ -137,13 +137,13 @@ function delPro($id){
  * @return array
  */
 function getAllProByAdmin(){
-	$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName from imooc_pro as p join imooc_cate c on p.cId=c.id";
+	$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName from ad_pro as p join ad_cate c on p.cId=c.id";
 	$rows=fetchAll($sql);
 	return $rows;
 }
 
 function getAllImgByProId($id){
-	$sql="select a.albumPath from imooc_album a where pid={$id}";
+	$sql="select a.albumPath from ad_album a where pid={$id}";
 	$rows=fetchAll($sql);
 	return $rows;
 }
@@ -154,28 +154,28 @@ function getAllImgByProId($id){
  * @return array
  */
 function getProById($id){
-		$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from imooc_pro as p join imooc_cate c on p.cId=c.id where p.id={$id}";
+		$sql="select p.id,p.pName,p.pSn,p.pNum,p.mPrice,p.iPrice,p.pDesc,p.pubTime,p.isShow,p.isHot,c.cName,p.cId from ad_pro as p join ad_cate c on p.cId=c.id where p.id={$id}";
 		$row=fetchOne($sql);
 		return $row;
 }
 
 function getProsByCid($cid){
-		$sql="select p.id,p.pName,p.iPrice from imooc_pro as p join imooc_cate c on p.cId=c.id where p.cid={$cid} limit 4";
+		$sql="select p.id,p.pName,p.iPrice from ad_pro as p join ad_cate c on p.cId=c.id where p.cid={$cid} limit 4";
 		$rows=fetchAll($sql);
 		return $rows;
 }
 function getProImgById($id){
-	$sql="select albumPath from imooc_album where pid={$id} limit 1";
+	$sql="select albumPath from ad_album where pid={$id} limit 1";
 	$row=fetchOne($sql);
 	return $row;
 }
 function getProImgsById($id){
-	$sql="select albumPath from imooc_album where pid={$id} limit 1";
+	$sql="select albumPath from ad_album where pid={$id} limit 1";
 	$row=fetchOne($sql);
 	return $row;
 }
 function getSmallProsByCid($cid){
-		$sql="select p.id,p.pName,p.iPrice from imooc_pro as p join imooc_cate c on p.cId=c.id where p.cid={$cid} limit 4,4";
+		$sql="select p.id,p.pName,p.iPrice from ad_pro as p join ad_cate c on p.cId=c.id where p.cid={$cid} limit 4,4";
 		$rows=fetchAll($sql);
 		return $rows;
 }

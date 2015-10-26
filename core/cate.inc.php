@@ -5,7 +5,7 @@
  */
 function addCate(){
 	$arr=$_POST;
-	if(insert("imooc_cate",$arr)){
+	if(insert("ad_cate",$arr)){
 		$mes="分类添加成功!<br/><a href='addCate.php'>继续添加</a>|<a href='listCate.php'>查看分类</a>";
 	}else{
 		$mes="分类添加失败！<br/><a href='addCate.php'>重新添加</a>|<a href='listCate.php'>查看分类</a>";
@@ -19,7 +19,7 @@ function addCate(){
  * @return array
  */
 function getCateById($id){
-	$sql="select id,cName from imooc_cate where id={$id}";
+	$sql="select id,cName from ad_cate where id={$id}";
 	return fetchOne($sql);
 }
 
@@ -30,7 +30,7 @@ function getCateById($id){
  */
 function editCate($where){
 	$arr=$_POST;
-	if(update("imooc_cate", $arr,$where)){
+	if(update("ad_cate", $arr,$where)){
 		$mes="分类修改成功!<br/><a href='listCate.php'>查看分类</a>";
 	}else{
 		$mes="分类修改失败!<br/><a href='listCate.php'>重新修改</a>";
@@ -47,7 +47,7 @@ function delCate($id){
 	$res=checkProExist($id);
 	if(!$res){
 		$where="id=".$id;
-		if(delete("imooc_cate",$where)){
+		if(delete("ad_cate",$where)){
 			$mes="分类删除成功!<br/><a href='listCate.php'>查看分类</a>|<a href='addCate.php'>添加分类</a>";
 		}else{
 			$mes="删除失败！<br/><a href='listCate.php'>请重新操作</a>";
@@ -63,7 +63,7 @@ function delCate($id){
  * @return array
  */
 function getAllCate(){
-	$sql="select id,cName from imooc_cate";
+	$sql="select id,cName from ad_cate";
 	$rows=fetchAll($sql);
 	return $rows;
 }

@@ -35,7 +35,7 @@ function uploadFile($path="uploads",$allowExt=array("gif","jpeg","png","jpg","wb
 	$i=0;
 	$files=buildInfo();
 	if(!($files&&is_array($files))){
-		return ;
+		return $files;
 	}
 	foreach($files as $file){
 		if($file['error']===UPLOAD_ERR_OK){

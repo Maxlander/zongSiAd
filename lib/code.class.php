@@ -101,7 +101,7 @@ class Code {
             }else{
                 $fontsize=rand(12, 16);
                 $x=floor(($this->width-8)/$this->codeNum)*$i+8;
-                $y=rand($fontSize+5, $this->height);
+                $y=rand($fontsize+5, $this->height);
                 imagettftext($this->image,$fontsize,rand(-30, 30),$x,$y ,$fontcolor, $fontFace, $this->checkCode{$i});
             }
         }
