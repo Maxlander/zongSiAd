@@ -43,10 +43,12 @@ if($act=="logout"){
 <title>Insert title here</title>
 </head>
 <body>
-<?php 
+<?php
+if (isset($mes)) {
 	if($mes){
 		echo $mes;
 	}
+}
 ?>
 </body>
 </html>

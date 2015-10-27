@@ -1,13 +1,13 @@
 <?php
-/*require_once '../include.php';
+require_once '../include.php';
 checkLogined();
-$sql="select uid,username,phone,money from ad_user";
-$rows=fetchAll($sql);
-if(!$rows){
-    alertMes("sorry,没有用户,请添加!","addUser.php");
-    exit;
-}
-*/?>
+//$sql="select uid,username,phone,money from ad_user";
+//$rows=fetchAll($sql);
+//if(!$rows){
+//    alertMes("sorry,没有用户,请添加!","addUser.php");
+//    exit;
+//}
+?>
 <!doctype html>
 <html>
 <head>
@@ -47,22 +47,8 @@ if(!$rows){
             <td><?php echo $row['username'] ?></td>
             <td><?php echo $row['phone'] ?></td>
             <td><?php echo $row['money'] ?></td>
-            <td><input type="button" value="修改" class="btn" onclick="editPro(<?php echo $row['id']; ?>)"><input type="button" value="删除" class="btn" onclick="delPro(<?php echo $row['id']; ?>)"></td>
+            <td><input type="button" value="修改" class="btn" onclick="editPro(<?php echo $row['id']; ?>)"><a href="delUser.php?userId=<?php echo $row['id'] ?>">删除</a></td>
             <?php
             }
             ?>
-<script type="text/javascript">
-
-    function addUser(){
-        window.location="addUser.php";
-    }
-    function editUser(id){
-        window.location="editUser.php?id="+id;
-    }
-    function delUser(id){
-        if(window.confirm("您确定要删除吗？删除之后不可以恢复哦！！！")){
-            window.location="doAdminAction.php?act=delUser&id="+id;
-        }
-    }
-</script>
 </html>

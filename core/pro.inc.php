@@ -3,6 +3,7 @@
  * 添加商品
  * @return string
  */
+include_once '../lib/mysqli.php';
 function addPro(){
 	$arr=$_POST;
 	$arr['pNAme']=$_POST['pName'];
@@ -100,31 +101,38 @@ function editPro($id){
 }
 
 function delPro($id){
-	$where="id=$id";
-	$res=delete("ad_pro",$where);
-	$proImgs=getAllImgByProId($id);
-	if($proImgs&&is_array($proImgs)){
-		foreach($proImgs as $proImg){
-			if(file_exists("uploads/".$proImg['albumPath'])){
-				unlink("uploads/".$proImg['albumPath']);
-			}
-			if(file_exists("../image_50/".$proImg['albumPath'])){
-				unlink("../image_50/".$proImg['albumPath']);
-			}
-			if(file_exists("../image_220/".$proImg['albumPath'])){
-				unlink("../image_220/".$proImg['albumPath']);
-			}
-			if(file_exists("../image_350/".$proImg['albumPath'])){
-				unlink("../image_350/".$proImg['albumPath']);
-			}
-			if(file_exists("../image_800/".$proImg['albumPath'])){
-				unlink("../image_800/".$proImg['albumPath']);
-			}
-		}
-	}
-	$where1="pid={$id}";
-	$res1=delete("ad_album",$where1);
-	if($res&&$res1){
+//	$where="id=$id";
+//	$res=delete("ad_pro",$where);
+//	$proImgs=getAllImgByProId($id);
+//	if($proImgs&&is_array($proImgs)){
+//		foreach($proImgs as $proImg){
+//			if(file_exists("uploads/".$proImg['albumPath'])){
+//				unlink("uploads/".$proImg['albumPath']);
+//			}
+//			if(file_exists("../image_50/".$proImg['albumPath'])){
+//				unlink("../image_50/".$proImg['albumPath']);
+//			}
+//			if(file_exists("../image_220/".$proImg['albumPath'])){
+//				unlink("../image_220/".$proImg['albumPath']);
+//			}
+//			if(file_exists("../image_350/".$proImg['albumPath'])){
+//				unlink("../image_350/".$proImg['albumPath']);
+//			}
+//			if(file_exists("../image_800/".$proImg['albumPath'])){
+//				unlink("../image_800/".$proImg['albumPath']);
+//			}
+//		}
+//	}
+//	$where1="pid={$id}";
+//	$res1=delete("ad_album",$where1);
+//	if($res&&$res1){
+//		$mes="删除成功!<br/><a href='/admin/listPro.php' target='mainFrame'>查看商品列表</a>";
+//	}else{
+//		$mes="删除失败!<br/><a href='/admin/listPro.php' target='mainFrame'>重新删除</a>";
+//	}
+//	return $mes;
+
+	if($res){
 		$mes="删除成功!<br/><a href='/admin/listPro.php' target='mainFrame'>查看商品列表</a>";
 	}else{
 		$mes="删除失败!<br/><a href='/admin/listPro.php' target='mainFrame'>重新删除</a>";
@@ -160,7 +168,7 @@ function getAllImgByProId($id){
  * @return array
  */
 function getProById($id){
-		$sql="select pName,pSn,pNum,mPrice,pDesc from ad_pro";
+		$sql="select id,pName,pSn,pNum,mPrice,pDesc from ad_pro";
 		$row=fetchOne($sql);
 		return $row;
 }

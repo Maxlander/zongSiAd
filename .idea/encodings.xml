@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="Encoding" defaultCharsetForPropertiesFiles="UTF-8">
+    <file url="file://$PROJECT_DIR$/admin/del.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/admin/doLogin.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/admin/images/attach.jpg" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/images/delete.png" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/images/icon" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/images/webLogo.jpg" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/admin/listPro2.php" charset="UTF-8" />
     <file url="file://$PROJECT_DIR$/admin/styles/backstage.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/styles/global.css" charset="GBK" />
     <file url="file://$PROJECT_DIR$/admin/styles/main.css" charset="GBK" />

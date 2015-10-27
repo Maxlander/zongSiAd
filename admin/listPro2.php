@@ -58,9 +58,9 @@ header("content-type:text/html; charset=utf-8");
         <tr>
             <th width="10%">编号</th>
             <th width="20%">商品名称</th>
-            <th width="20%">商品描述</th>
             <th width="10%">商品数量</th>
             <th width="10%">商品价格</th>
+            <th width="20%">商品描述</th>
             <th width="15%">操作</th>
         </tr>
         </thead>
@@ -72,34 +72,12 @@ header("content-type:text/html; charset=utf-8");
         <tr>
             <td><?php echo $row['pSn'] ?></td>
             <td><?php echo $row['pName'] ?></td>
-            <td><?php echo $row['pDesc'] ?></td>
             <td><?php echo $row['pNum'] ?></td>
             <td><?php echo $row['mPrice'] ?></td>
-            <td><input type="button" value="修改" class="btn" onclick="editPro(<?php echo $row['id']; ?>)"><input type="button" value="删除" class="btn" onclick="delPro(<?php echo $row['id']; ?>)"></td>
+            <td><?php echo $row['pDesc'] ?></td>
+            <td><input type="button" value="修改" class="btn" onclick="editPro(<?php echo $row['id']; ?>)"><a href="delUser.php?userId=<?php echo $row['id'] ?>">删除</a></td>
             <?php
             }
             ?>
-            <script type="text/javascript">
-                function addPro(){
-                    window.location='addPro.php';
-                }
-                function editPro(id){
-                    window.location='editPro.php?id='+id;
-                }
-                function delPro(id){
-                    if(window.confirm("您确认要删除嘛？添加一次不易，且删且珍惜!")){
-                        window.location="doAdminAction.php?act=delPro&id="+id;
-                    }
-                }
-                function search(){
-                    if(event.keyCode==13){
-                        var val=document.getElementById("search").value;
-                        window.location="listPro.php?keywords="+val;
-                    }
-                }
-                function change(val){
-                    window.location="listPro.php?order="+val;
-                }
-            </script>
 </body>
 </html>
